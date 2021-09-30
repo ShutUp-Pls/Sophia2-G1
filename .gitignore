@@ -1,0 +1,10 @@
+#Archivos innecesarios de llevar un control
+
+#Dependencias que se instalan
+/node_modules/
+
+#Ejecución de Next
+/.next/
+
+#Configuraciones de Visual Studio Code
+/.vscode/
