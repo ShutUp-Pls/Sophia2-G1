@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const datos = require('../public/data/datosTest.json');
+const datos = require('./datosTest.json');
 
 
 const data = [
@@ -35,10 +35,10 @@ const data = [
   },
 ];
 
-export default class Example extends PureComponent {
+class Diagrama extends Component {
   render() {
     return (
-      <ResponsiveContainer width="100%" aspect = {3}>
+      <ResponsiveContainer width="100%" aspect={3}>
         <LineChart
           width={500}
           height={300}
@@ -56,9 +56,10 @@ export default class Example extends PureComponent {
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="pop" stroke="#8884d8" activeDot={{ r: 8 }} />
-          
+
         </LineChart>
       </ResponsiveContainer>
     );
   }
 }
+export default Diagrama

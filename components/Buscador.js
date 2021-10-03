@@ -1,18 +1,19 @@
 import SearchField from 'react-search-field';
 
-const pagina1 = () => {
+
+const Buscador = () => {
     const detectaCambio = (texto, evento) => {
-        console.log('Valor del texto =',texto);
-        console.log('Valor del evento =',evento);
+        console.log('Valor del texto =', texto);
+        console.log('Valor del evento =', evento);
     }
 
     return (
         <SearchField
             classNames='Searcher'
             placeholder='Buscar...'
-            onChange={detectaCambio}
+            onEnter={detectaCambio}
         />
     );
 };
 
-export default pagina1;
+export default Buscador;
