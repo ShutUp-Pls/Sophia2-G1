@@ -1,27 +1,6 @@
 import React, { Component } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const datos = require('./datosTest.json');
-
-const leerDatos = (archivoJson, tipo) => {
-  var data = [];
-  if(tipo == 0){
-    for(var i=0; i<archivoJson.length; i++){
-      data.push({name:archivoJson[i].id, pop:archivoJson[i].men});
-    }
-  }
-  else if(tipo == 1){
-    for(var i=0; i<archivoJson.length; i++){
-      data.push({name:archivoJson[i].id, pop:archivoJson[i].pop});
-    }
-  }
-  else{
-    data = leerDatos(archivoJson, 1);
-  }
-  return data;
-}
-const data = leerDatos(datos);
-
 class Diagrama extends Component {
   render() {
     return (
@@ -29,7 +8,7 @@ class Diagrama extends Component {
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={this.props.datos}
           margin={{
             top: 50,
             right: 30,
