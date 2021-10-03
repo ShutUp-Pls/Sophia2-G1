@@ -3,47 +3,24 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 const datos = require('./datosTest.json');
 
-const leerDatos = (archivoJson) => {
+const leerDatos = (archivoJson, tipo) => {
   var data = [];
-  for(var i=0; i<archivoJson.length; i++){
-    data.push({name:archivoJson[i].id, pop:archivoJson[i].pop});
+  if(tipo == 0){
+    for(var i=0; i<archivoJson.length; i++){
+      data.push({name:archivoJson[i].id, pop:archivoJson[i].men});
+    }
+  }
+  else if(tipo == 1){
+    for(var i=0; i<archivoJson.length; i++){
+      data.push({name:archivoJson[i].id, pop:archivoJson[i].pop});
+    }
+  }
+  else{
+    data = leerDatos(archivoJson, 1);
   }
   return data;
 }
 const data = leerDatos(datos);
-
-/*
-const data = [
-  {
-    name: datos[0].id,
-    pop: datos[0].pop
-  },
-  {
-    name: datos[1].id,
-    pop: datos[1].pop
-  },
-  {
-    name: datos[2].id,
-    pop: datos[2].pop
-  },
-  {
-    name: datos[3].id,
-    pop: datos[3].pop
-  },
-  {
-    name: datos[4].id,
-    pop: datos[4].pop
-  },
-  {
-    name: datos[5].id,
-    pop: datos[5].pop
-  },
-  {
-    name: datos[6].id,
-    pop: datos[6].pop
-  },
-]
-*/
 
 class Diagrama extends Component {
   render() {
