@@ -1,37 +1,63 @@
 import { useState } from 'react';
-import Data from './datosTest.json';
-import SearchField from 'react-search-field';
 
+import Diagrama from './Diagrama';
+import SearchField from 'react-search-field'
 
-function Input() {
-    const [id, setId] = useState('');
-    const [name, setName] = useState('');
-    const [men, setMen] = useState('');
-    const [pop, setPop] = useState('');
+function Input(){
+    const datosJson = require('../public/data/datosTest.json');
+    const [datos, setDatos] = useState([{}]);
+    const [textoFeedBack, setTextoFeedBack] = useState('Esperando busqueda...');
 
-    const onChange = (texto, evento) => {
-        const data = Data.find((d) => d.nom == texto);
+    const convierteDatos = (diccionario, tipo) => { //tipo=0 -> Muestra Menciones, tipo=1 -> Mientra Popularidad, por defecto tipo=1
+        var datosFormateados = [];
+        if(tipo == 0){
+            const listaLlaves = Object.keys(diccionario.mentions);
+            const listaValores = Object.values(diccionario.mentions);
+            for(var i=0; i<listaLlaves.length; i++){
+                datosFormateados.push({fecha:listaLlaves[i], popularidad:listaValores[i]});
+            }
+        }
+        else if(tipo == 1){
+            const listaLlaves = Object.keys(diccionario.popularity);
+            const listaValores = Object.values(diccionario.popularity);
+            for(var i=0; i<listaLlaves.length; i++){
+                datosFormateados.push({fecha:listaLlaves[i], menciones:listaValores[i]});
+            }
+        }
+        else{
+            datosFormateados = convierteDatos(diccionario, 1);
+        }
+        return datosFormateados;
+    }
 
+    const buscarNombre = (texto, evento) => {
+        const data = datosJson.find((llave) => llave.source_name == texto);
         if (data) {
-            setId(data.id);
-            setName(data.nom);
-            setMen(data.men);
-            setPop(data.pop);
+            const datosFormateados = convierteDatos(data)
+            setDatos(datosFormateados);
+            setTextoFeedBack('Mostrado \'' + Object.keys(datosFormateados[0])[1] + '\' de \'' + texto + '\' en pantalla' );
+        }
+        else{
+            setTextoFeedBack('\'' + texto + '\' no se encuentra en nuestra base de datos');
         }
     }
-    return (
+
+    return(
         <div>
             <SearchField
-                classNames='Searcher'
-                placeholder='Buscar...'
-                onEnter={onChange}
-                onSearchClick={onChange}
+            classNames='Searcher'
+            placeholder='Buscar...'
+            onEnter={buscarNombre}
+            onSearchClick={buscarNombre}
             />
-            <p>Id: {id}</p>
-            <p>Name: {name}</p>
-            <p>Menciones: {men}</p>
-            <p>Popularidad: {pop}</p>
+            <p>{textoFeedBack}</p>
+            <Diagrama
+            datos={datos}
+            datoEnX={Object.keys(datos[0])[0]}
+            nombreLinea={Object.keys(datos[0])[1]}
+            />
         </div>
     );
 }
+
 export default Input
