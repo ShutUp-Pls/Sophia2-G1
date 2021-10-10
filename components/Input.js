@@ -14,14 +14,14 @@ function Input(){
             const listaLlaves = Object.keys(diccionario.mentions);
             const listaValores = Object.values(diccionario.mentions);
             for(var i=0; i<listaLlaves.length; i++){
-                datosFormateados.push({fecha:listaLlaves[i], popularidad:listaValores[i]});
+                datosFormateados.push({fecha:listaLlaves[i], menciones:listaValores[i]});
             }
         }
         else if(tipo == 1){
             const listaLlaves = Object.keys(diccionario.popularity);
             const listaValores = Object.values(diccionario.popularity);
             for(var i=0; i<listaLlaves.length; i++){
-                datosFormateados.push({fecha:listaLlaves[i], menciones:listaValores[i]});
+                datosFormateados.push({fecha:listaLlaves[i], popularidad:listaValores[i]});
             }
         }
         else{
