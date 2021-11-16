@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Formik, Form, Field } from 'formik'
+import Link from 'next/link'
 
 const ApiCall = () => {
   const [fetchName, setFetchName] = useState({})
@@ -37,6 +38,7 @@ const ApiCall = () => {
         </Form>
       </Formik>
       {verification["length"] === 0 ? <h2>{name} no existe en la api</h2> : <h2>{name} existe en la api</h2>}
+      <Link href="../">volver</Link>
     </div>
   );
 }

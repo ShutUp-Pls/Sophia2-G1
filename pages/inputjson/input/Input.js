@@ -1,14 +1,14 @@
 import { useState } from 'react';
-
-import Diagrama from './Diagrama';
+import Diagrama from '../diagrama/Diagrama';
 import SearchField from 'react-search-field'
-import ApiCall from './ApiCall';
+
 
 function Input() {
-    const datosJson = require('../public/data/datosTest.json');
+    const datosJson = require('../../../public/data/datosTest.json');
     const [datos, setDatos] = useState([{}]);
     const [textoFeedBack, setTextoFeedBack] = useState('Esperando busqueda...');
 
+    let change = false
     const convierteDatos = (diccionario, tipo) => { //tipo=0 -> Muestra Menciones, tipo=1 -> Mientra Popularidad, por defecto tipo=1
         var datosFormateados = [];
         if (tipo == 0) {
@@ -31,15 +31,18 @@ function Input() {
         return datosFormateados;
     }
 
+
     const buscarNombre = (texto, evento) => {
         const data = datosJson.find((llave) => llave.source_name == texto);
         if (data) {
             const datosFormateados = convierteDatos(data)
             setDatos(datosFormateados);
             setTextoFeedBack('Mostrado \'' + Object.keys(datosFormateados[0])[1] + '\' de \'' + texto + '\' en pantalla');
+
         }
         else {
             setTextoFeedBack('\'' + texto + '\' no se encuentra en nuestra base de datos');
+
         }
     }
 
@@ -57,7 +60,6 @@ function Input() {
                 datoEnX={Object.keys(datos[0])[0]}
                 nombreLinea={Object.keys(datos[0])[1]}
             />
-            <ApiCall />
         </div>
     );
 }
