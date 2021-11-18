@@ -1,11 +1,16 @@
 import { useState } from 'react'
 import { Formik, Form, Field } from 'formik'
-import Link from 'next/link'
+
 
 const ApiCall = () => {
   const [fetchName, setFetchName] = useState({})
   const [name, setName] = useState()
+  console.log(fetchName)
   let verification = Object.values(fetchName)
+  console.log(fetchName[0])
+  console.log(name)
+
+
   return (
     <div>
 
@@ -15,8 +20,9 @@ const ApiCall = () => {
           let name = values.search
           setName(name)
           let names = name.split(" ")
+
           const res = await fetch(
-            `http://45.79.169.216:86/persons/?name=${names[0]}%20${names[1]}&page=1&size=50`,
+            `http://45.79.169.216:86/persons_by_name/?name=${names[0]}%20${names[1]}&page=1&size=50`,
             {
               method: "GET",
               headers: {
@@ -38,7 +44,6 @@ const ApiCall = () => {
         </Form>
       </Formik>
       {verification["length"] === 0 ? <h2>{name} no existe en la api</h2> : <h2>{name} existe en la api</h2>}
-      <Link href="../">volver</Link>
     </div>
   );
 }
