@@ -8,7 +8,6 @@ function Input() {
     const [datos, setDatos] = useState([{}]);
     const [textoFeedBack, setTextoFeedBack] = useState('Esperando busqueda...');
 
-    let change = false
     const convierteDatos = (diccionario, tipo) => { //tipo=0 -> Muestra Menciones, tipo=1 -> Mientra Popularidad, por defecto tipo=1
         var datosFormateados = [];
         if (tipo == 0) {
