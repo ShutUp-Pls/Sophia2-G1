@@ -4,39 +4,40 @@ import SearchField from 'react-search-field'
 
 
 function Input() {
-    const datosJson = require('../../../public/data/datosTest.json');
-    const [datos, setDatos] = useState([{}]);
+    const input = require('../../../public/data/datos.json');
+
+    const datosJson = input[0].items
+    const [mentions, setMentions] = useState([{}]);
+    const [popularity, setPopularity] = useState([{}]);
     const [textoFeedBack, setTextoFeedBack] = useState('Esperando busqueda...');
 
-    const convierteDatos = (diccionario, tipo) => { //tipo=0 -> Muestra Menciones, tipo=1 -> Mientra Popularidad, por defecto tipo=1
-        var datosFormateados = [];
+    const convierteDatos = (diccionario, tipo) => {
+
         if (tipo == 0) {
-            const listaLlaves = Object.keys(diccionario.mentions);
-            const listaValores = Object.values(diccionario.mentions);
-            for (var i = 0; i < listaLlaves.length; i++) {
-                datosFormateados.push({ fecha: listaLlaves[i], menciones: listaValores[i] });
-            }
+            const datas = diccionario.mentions.filter((el, i) => {
+                return el
+            })
+            return datas
         }
         else if (tipo == 1) {
-            const listaLlaves = Object.keys(diccionario.popularity);
-            const listaValores = Object.values(diccionario.popularity);
-            for (var i = 0; i < listaLlaves.length; i++) {
-                datosFormateados.push({ fecha: listaLlaves[i], popularidad: listaValores[i] });
-            }
+            const datas = diccionario.popularity.filter((el, i) => {
+                return el
+            })
+            return datas
         }
-        else {
-            datosFormateados = convierteDatos(diccionario, 1);
-        }
-        return datosFormateados;
+        return ([{}]);
     }
 
 
     const buscarNombre = (texto, evento) => {
-        const data = datosJson.find((llave) => llave.source_name == texto);
+        const data = datosJson.find(llave => llave.name == texto)
         if (data) {
-            const datosFormateados = convierteDatos(data)
-            setDatos(datosFormateados);
-            setTextoFeedBack('Mostrado \'' + Object.keys(datosFormateados[0])[1] + '\' de \'' + texto + '\' en pantalla');
+            const menciones = convierteDatos(data, 0)
+            const popularidad = convierteDatos(data, 1)
+            setMentions(menciones)
+            setPopularity(popularidad)
+            setTextoFeedBack('Mostrado popularidad y menciones de \'' + texto + '\' en pantalla');
+
 
         }
         else {
@@ -44,6 +45,11 @@ function Input() {
 
         }
     }
+    //console.log(mentions[0].date)
+    for (let i = 0; i < mentions.length; i++) {
+        console.log(mentions[i].value)
+    }
+
 
     return (
         <div>
@@ -55,9 +61,9 @@ function Input() {
             />
             <p>{textoFeedBack}</p>
             <Diagrama
-                datos={datos}
-                datoEnX={Object.keys(datos[0])[0]}
-                nombreLinea={Object.keys(datos[0])[1]}
+                datos={mentions}
+                datoEnX="date"
+            //nombreLinea={Object.keys(datos[0])[1]}
             />
         </div>
     );
