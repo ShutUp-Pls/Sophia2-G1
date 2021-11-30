@@ -1,7 +1,46 @@
 import { useState } from 'react';
 import Diagrama from '../diagrama/Diagrama';
 import SearchField from 'react-search-field'
+import styled from 'styled-components';
 
+const Container = styled.div`
+    &.graphic{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+    &.graphic svg{
+        background-color: rgba(255,255,255,0.85);
+    }
+    &.header{
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        
+    }
+    &.header input{
+        width: 300px;
+        background-color: rgba(255,255,255,0.8);
+    }
+
+
+    &.feedback{
+        display: flex;
+        justify-content: center;
+        color: #ddd;
+        font-size: 20px;
+    }
+    &.container{
+        padding: 3%;
+        border: 1px solid #666;
+        margin: 3%;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+        background-color: rgba(50,50,50,0.8);
+        
+    }
+`
 
 function Input() {
     const input = require('../../../public/data/datos.json');
@@ -45,27 +84,31 @@ function Input() {
 
         }
     }
-    //console.log(mentions[0].date)
     for (let i = 0; i < mentions.length; i++) {
         console.log(mentions[i].value)
     }
 
 
     return (
-        <div>
-            <SearchField
-                classNames='Searcher'
-                placeholder='Buscar...'
-                onEnter={buscarNombre}
-                onSearchClick={buscarNombre}
-            />
-            <p>{textoFeedBack}</p>
-            <Diagrama
-                datos={mentions}
-                datoEnX="date"
-            //nombreLinea={Object.keys(datos[0])[1]}
-            />
-        </div>
+        <Container className="container">
+            <Container className="header">
+                <SearchField
+                    classNames='Searcher'
+                    placeholder='Buscar...'
+                    onEnter={buscarNombre}
+                    onSearchClick={buscarNombre}
+                />
+            </Container>
+            <Container className="feedback">
+                <p>{textoFeedBack}</p>
+            </Container>
+            <Container className="graphic">
+                <Diagrama
+                    datos={mentions}
+                    datoEnX="date"
+                />
+            </Container>
+        </Container>
     );
 }
 

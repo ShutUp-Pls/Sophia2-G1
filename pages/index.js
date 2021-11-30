@@ -17,17 +17,22 @@ const StyledLink = styled.div`
     color: #d5d5d5;
   }
 `
+const Container = styled.div`
+  margin: 0px;
+  padding: 0px;
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Input />
-        <StyledLink>
-          <Link href="./apicall/ApiCall">ir a apicall</Link>
-        </StyledLink>
-      </div>
-    )
-  }
+`
+
+export default function Home() {
+
+  return (
+    <Container>
+      <Input />
+      <StyledLink>
+        <Link href="./apicall/ApiCall">ir a apicall</Link>
+      </StyledLink>
+    </Container>
+  )
 }
-export default App;
+
+

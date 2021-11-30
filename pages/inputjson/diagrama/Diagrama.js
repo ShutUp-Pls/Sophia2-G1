@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 class Diagrama extends Component {
   render() {
     return (
-      <ResponsiveContainer width="60%" aspect={3}>
+      <ResponsiveContainer width="70%" aspect={3}>
         <LineChart
           width={1000}
           height={500}
@@ -21,7 +21,7 @@ class Diagrama extends Component {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="value" stroke="#000000" activeDot={{ r: 9 }} />
         </LineChart>
       </ResponsiveContainer>
     );
