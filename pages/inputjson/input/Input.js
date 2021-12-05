@@ -68,7 +68,7 @@ function Input() {
     }
 
 
-    const buscarNombre = (texto, evento) => {
+    const buscarNombre = (texto) => {
         const data = datosJson.find(llave => llave.name == texto)
         if (data) {
             const menciones = convierteDatos(data, 0)
@@ -83,9 +83,6 @@ function Input() {
             setTextoFeedBack('\'' + texto + '\' no se encuentra en nuestra base de datos');
 
         }
-    }
-    for (let i = 0; i < mentions.length; i++) {
-        console.log(mentions[i].value)
     }
 
 
