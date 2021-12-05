@@ -18,8 +18,8 @@ const StyledLink = styled.div`
   }
 `
 const Container = styled.div`
-  margin: 0px;
-  padding: 0px;
+  margin-top: -3%;
+  padding: 2%;
 
 `
 

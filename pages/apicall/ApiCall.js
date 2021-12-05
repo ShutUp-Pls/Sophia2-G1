@@ -61,7 +61,7 @@ const ApiCall = () => {
   const [fetchName, setFetchName] = useState({})
   const [name, setName] = useState()
   let verification = Object.values(fetchName)
-
+  console.log(fetchName)
   return (
     <div>
 

@@ -12,7 +12,7 @@ const Container = styled.div`
         padding: 10px;
     }
     &.graphic svg{
-        background-color: rgba(255,255,255,0.85);
+        background-color: rgba(105,105,105,1);
     }
     &.header{
         display: flex;
@@ -34,9 +34,9 @@ const Container = styled.div`
     }
     &.container{
         padding: 3%;
-        border: 1px solid #666;
+        border: 1px solid #555;
         margin: 3%;
-        box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+        box-shadow: 5px 5px 8px rgba(0,0,0,0.35);
         background-color: rgba(50,50,50,0.8);
         
     }
@@ -90,25 +90,27 @@ function Input() {
 
 
     return (
-        <Container className="container">
-            <Container className="header">
-                <SearchField
-                    classNames='Searcher'
-                    placeholder='Buscar...'
-                    onEnter={buscarNombre}
-                    onSearchClick={buscarNombre}
-                />
+        <div>
+            <Container className="container">
+                <Container className="header">
+                    <SearchField
+                        classNames='Searcher'
+                        placeholder='Buscar...'
+                        onEnter={buscarNombre}
+                        onSearchClick={buscarNombre}
+                    />
+                </Container>
+                <Container className="feedback">
+                    <p>{textoFeedBack}</p>
+                </Container>
+                <Container className="graphic">
+                    <Diagrama
+                        datos={mentions}
+                        datoEnX="date"
+                    />
+                </Container>
             </Container>
-            <Container className="feedback">
-                <p>{textoFeedBack}</p>
-            </Container>
-            <Container className="graphic">
-                <Diagrama
-                    datos={mentions}
-                    datoEnX="date"
-                />
-            </Container>
-        </Container>
+        </div>
     );
 }
 
