@@ -17,11 +17,11 @@ class Diagrama extends Component {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={this.props.datoEnX} />
+          <XAxis dataKey={this.props.datoEnX} stroke='#000000' />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="value" stroke="#000000" activeDot={{ r: 9 }} />
+          <Line type="monotone" dataKey="mentions" stroke="#000000" activeDot={{ r: 9 }} />
         </LineChart>
       </ResponsiveContainer>
     );

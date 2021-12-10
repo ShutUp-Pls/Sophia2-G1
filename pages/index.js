@@ -1,6 +1,4 @@
-import { Component } from 'react'
-import Input from './inputjson/input/Input'
-import Link from 'next/link'
+import ApiCall from './apicall/ApiCall'
 import styled from 'styled-components'
 const StyledLink = styled.div`
   display: inline-block;
@@ -27,10 +25,7 @@ export default function Home() {
 
   return (
     <Container>
-      <Input />
-      <StyledLink>
-        <Link href="./apicall/ApiCall">ir a apicall</Link>
-      </StyledLink>
+      <ApiCall />
     </Container>
   )
 }
